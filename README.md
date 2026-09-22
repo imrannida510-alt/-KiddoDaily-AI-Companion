@@ -1,4 +1,4 @@
-# KiddoDaily-AI-Companion 👶🤖
+![Logo](./logo.png)# KiddoDaily-AI-Companion 👶🤖
 ![Logo](logo.png)
 > Ye AI bacho ka rozana ka dost hai. Iska maqsad bacho ko mobile se hatana aur achi aadat dalna hai.
 
