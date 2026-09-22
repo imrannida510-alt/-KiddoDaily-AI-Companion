@@ -1,4 +1,6 @@
-![KiddoDaily Logo](image.png)
+![KiddoDaily Logo](WhatsApp%20Image%202026-09-22%20at%2010.56.04%20AM.jpg)
+
+# KiddoDaily-AI-Companion 👶🤖
 
 # KiddoDaily-AI-Companion 👶🤖
 
