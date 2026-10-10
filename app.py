@@ -1,22 +1,29 @@
 import streamlit as st
 from gtts import gTTS
+import os
 
-st.set_page_config(page_title="KiddoDaily", page_icon="👶")
-st.image("logo.png", width=250)
+st.set_page_config(page_title="KiddoDaily AI", page_icon="👶")
+
+# Logo - agar image.png mile to dikhao, warna skip
+if os.path.exists("image.png"):
+    st.image("image.png", width=200)
+elif os.path.exists("logo.png"):
+    st.image("logo.png", width=200)
+
 st.title("KiddoDaily-AI-Companion 👶")
 st.write("Main aap ka pyara dost hun! Mujh se kuch bhi baat karo ❤️")
+st.write("Jaise: school / homework / tuition / khana / sona / udaas")
 
-user_input = st.text_input("Aap kya bolna chahte ho? (kuch bhi likho)")
+user_input = st.text_input("Yahan likho...")
 
 def speak(text):
     try:
         tts = gTTS(text=text, lang='ur')
         tts.save("awaz.mp3")
         st.audio("awaz.mp3", format='audio/mp3')
-    except:
-        st.audio("awaz.mp3")
+    except Exception as e:
+        st.warning("Awaz chalane me masla hai, lekin jawab neeche hai")
 
-# --- YEHI JAADU HAI ---
 def get_smart_reply(text):
     text = text.lower()
     if "school" in text:
@@ -29,16 +36,19 @@ def get_smart_reply(text):
         return "Aao beta khana kha lo, khana thanda ho raha hai, hath dho kar aao!"
     elif "sona" in text or "neend" in text:
         return "Raat ho gayi hai mere bache, mobile rakh do aur so jao, subha jaldi uthna hai!"
-    elif "udaas" in text or "sad" in text or "gussa" in text:
-        return f"Arey mera pyara bacha udaas hai? Aap ne kaha '{text}'. Koi baat nahi, mai aap ke sath hun, sab theek ho jayega!"
+    elif "udaas" in text or "sad" in text:
+        return f"Mera pyara bacha udaas hai? Aap ne kaha '{text}'. Koi baat nahi, mai aap ke sath hun!"
+    elif text.strip() == "":
+        return ""
     else:
-        # YE HAR BAAT KA JAWAB DEGA
-        return f"Wah beta, aap ne kaha '{text}'. Bohat achi baat hai, mai sun raha hun, aur batao kya karna hai?"
+        # AB KUCH BHI BOLOGE TO JAWAB DEGA
+        return f"Wah beta, aap ne kaha '{text}'. Bohat achi baat hai! Aur batao, mai sun raha hun."
 
 if user_input:
     reply = get_smart_reply(user_input)
-    st.success(f"👶 {reply}")
-    speak(reply)
+    if reply:
+        st.success(f"👶 {reply}")
+        speak(reply)
 
 st.markdown("---")
 st.write("Made with ❤️ for MOTHERS & KIDS by NIDA")
